@@ -48,6 +48,8 @@ public static final int TUBE_SPACING =125;
                 //выполняем этот метод
                 tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));
             }
+            if(tube.collides(bird.getBounds()))//если труба столкнулась с птицей
+            gsm.set(new PlayState(gsm));//перезагружаем игру
 
         }
         camera.update();

@@ -1,6 +1,7 @@
 package islavstan.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 
@@ -10,11 +11,12 @@ public class Bird {
     private Vector3 position;//позиция птицы
     private Vector3 velosity;//скорость птицы
     private Texture bird;
-
+private Rectangle bounds;//квадрат вокруг птицы
     public Bird(int x,int y){//задаём направление и текстуру птички
         position=new Vector3(x,y,0);
         velosity =new Vector3(0,0,0);
         bird =new Texture("bird.png");
+        bounds=new Rectangle(x,y,bird.getWidth(),bird.getHeight());
 
     }
 
@@ -26,6 +28,7 @@ public class Bird {
         velosity.scl(1/dt);
         if(position.y<0)
             position.y=0;
+        bounds.setPosition(position.x,position.y);
 
 
 
@@ -41,5 +44,9 @@ public class Bird {
 
     public Texture getBird() {
         return bird;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
     }
 }
