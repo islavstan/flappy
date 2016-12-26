@@ -18,11 +18,20 @@ public class Bird {
     }
 
     public void update(float dt){//реализация силы тяжести на птицу
+        if(position.y>0)
         velosity.add(0,GRAVITY,0);//добавляем значение GRAVITY к y
         velosity.scl(dt);//умножаем вектор скорости на сколяр промежутка времени
         position.add(0,velosity.y,0);
         velosity.scl(1/dt);
+        if(position.y<0)
+            position.y=0;
 
+
+
+    }
+
+    public void jump(){
+        velosity.y=250;
     }
 
     public Vector3 getPosition() {
