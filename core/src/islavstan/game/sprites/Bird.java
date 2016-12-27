@@ -49,4 +49,9 @@ private Rectangle bounds;//квадрат вокруг птицы
     public Rectangle getBounds() {
         return bounds;
     }
+
+    public void dispose() {//освобождаем ресурсы
+
+        bird.dispose();
+    }
 }

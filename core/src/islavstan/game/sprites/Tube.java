@@ -54,4 +54,8 @@ private Rectangle boundsTop,boundsBot;//создаём невидимые ква
         return player.overlaps(boundsTop)||player.overlaps(boundsBot);
     }
 
+    public void dispose() {
+        topTube.dispose();
+        bottomTube.dispose();
+    }
 }

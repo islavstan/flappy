@@ -17,6 +17,7 @@ public class MenuState extends State{
         super(gsm);
         background=new Texture("bg.png");
         playBtn=new Texture("playbtn.png");
+        camera.setToOrtho(false,FlappyDemo.WIDTH/2,FlappyDemo.HEIGHT/2);//для отображения меню на весь экран
 
     }
 
@@ -37,9 +38,10 @@ public class MenuState extends State{
 
     @Override
     public void render(SpriteBatch sb) {
+        sb.setProjectionMatrix(camera.combined);//для отображения меню на весь экран
         sb.begin();
-       sb.draw(background,0,0, FlappyDemo.WIDTH,FlappyDemo.HEIGHT);//рисуем фон
-        sb.draw(playBtn,(FlappyDemo.WIDTH/2)-(playBtn.getWidth()/2),FlappyDemo.HEIGHT/2);//рисуем кнопку по середине экрана
+       sb.draw(background,0,0);//рисуем фон
+        sb.draw(playBtn,camera.position.x-playBtn.getWidth()/2,camera.position.y);//рисуем кнопку по середине экрана
         sb.end();
 
     }
