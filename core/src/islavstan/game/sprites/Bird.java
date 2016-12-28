@@ -1,5 +1,7 @@
 package islavstan.game.sprites;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,6 +18,7 @@ public class Bird {
 private Rectangle bounds;//квадрат вокруг птицы
     private Animation birdAnimation;
     Texture texture;
+    private Sound flap;//звук крыльев
     public Bird(int x,int y){//задаём направление и текстуру птички
         position=new Vector3(x,y,0);
         velosity =new Vector3(0,0,0);
@@ -24,6 +27,8 @@ private Rectangle bounds;//квадрат вокруг птицы
         birdAnimation=new Animation(new TextureRegion(texture),3,0.5f);//передаём текстуру, кол-во кадров и длительность анимации
         ground=new Texture("ground.png");
         bounds=new Rectangle(x,y,texture.getWidth()/3,texture.getHeight());
+        flap = Gdx.audio.newSound(Gdx.files.internal("sfx_wing.ogg"));
+
 
     }
 
@@ -41,6 +46,7 @@ private Rectangle bounds;//квадрат вокруг птицы
 
     public void jump(){
         velosity.y=250;
+        flap.play();
     }
 
     public Vector3 getPosition() {
@@ -58,5 +64,6 @@ private Rectangle bounds;//квадрат вокруг птицы
     public void dispose() {//освобождаем ресурсы
 
         texture.dispose();
+        flap.dispose();
     }
 }
